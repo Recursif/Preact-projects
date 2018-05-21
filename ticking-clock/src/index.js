@@ -1,21 +1,23 @@
-
-import { h, Component } from 'preact'
+// import 'promise-polyfill';
+// import 'isomorphic-fetch';
+import { h, render } from 'preact';
+import './style';
 
 let root;
 function init() {
-	let Clock = require('./components/ticking-clock').default;
-	root = render(<Clock />, document.body, root);
+	let App = require('./components/app').default;
+	root = render(<App />, document.body, root);
 }
 
-// register ServiceWorker via OfflinePLugin, for prod only:
+// register ServiceWorker via OfflinePlugin, for prod only:
 if (process.env.NODE_ENV==='production') {
 	require('./pwa');
 }
 
 // in development, set up HMR:
 if (module.hot) {
-		//require('preact/devtools');  // turn this on if you want
-		module.hot.accept('./components/ticking-clock', () => requestAnimationFrame(init));
+	//require('preact/devtools');   // turn this on if you want to enable React DevTools!
+	module.hot.accept('./components/app', () => requestAnimationFrame(init) );
 }
 
 init();
