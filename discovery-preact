@@ -1,0 +1,57 @@
+
+# Decouverte de preact
+
+Preact est une alternative à React.
+
+Fast 3kB alternative to React with the same ES6 API.
+
+Attention dans preact il y a des compromis.
+
+## Différence entre React et Preact
+
+### Ce qu'il manque
+
+Preact ce concentre sur le DOM pas de react-native en preact.
+
+Cette spécialisation pour le DOM permet à Preact de ne pas avoir
+à implémenter le système de Synthetic Events utilisé par React.
+
+Ainsi Preact peut se permettre d'utiliser simplement le système d'événements
+standard du navigateur.
+
+Pas de gestion de PropTypes en Preact.
+
+Pour finir, Preact n'expose pas les nouvelles APIs de React 16 telles que
+React.Fragment(dont le support est prévu),
+ReactDOM.createPortal (la fonctionnalité existe tout de même sous une forme différente dans preact-portal)
+ou ReactDOM.hydrate.
+
+
+### Ce qui est différent
+
+Preact utilise la bibliothèque hyperscript,
+qui est une version générique de React.createElement.
+
+Le résultat est le même, la signature de la fonction h()
+exposée par hyperscript étant la même que celle de React.createElement.
+
+Il faudra quand même indiquer au compilateur qu'il doit utiliser cette foction pour transpiler le JSX.
+
+
+La méthode render() des composants reçoit toujours this.props et
+this.state en paramètres, ce qui permet de les structurer directement dans les paramètres de la fonction,
+et ainsi de les traiter comme s'ils étaient eux-mêmes des paramètres.
+
+Preact gère l'API context, mais il n'existe pas de contectTypes ni de childContextTypes.
+
+Tous les enfants reçoivent le context définit dans la méthode getChildContext() de leurs parents.
+
+Si plusieurs parents implémentent cette méthode, alors les descendants recevront un agrégat.
+
+Dans Preact, props.children est un Array.
+On peut donc utiliser toutes les méthodes de Array.prototype dessus, sans avoir à passer par un équivalent
+de React.Children.
+
+Enfin, il est possible d'utiliser l'attribut class dans un noeud JSX!!!!!
+
+Yes on a des génies.
