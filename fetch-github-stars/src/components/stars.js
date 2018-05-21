@@ -1,4 +1,6 @@
 
+import { h, Component } from 'preact'
+
 
 class Stars extends Component {
   async componentDidMount() {
